@@ -1,0 +1,32 @@
+#cheese {
+    position: absolute;
+    display: none;
+}
+#startButton {
+    color: green;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -120px;
+    margin-top: -70px;
+    width: 240px;
+    height: 140px;
+    font-size: 100px;
+}
+#cheesesfound, #globalcheesesfound, #fastesttime, #stopwatch, #globalfastesttime {
+    color: green;
+    background-color: white;
+    font-size: 50px;
+    margin: 15px;
+}
+@keyframes cheeseAnimation {
+    from {position: absolute}
+    to {left: 50%; top: 50%;
+    margin-left: -75px; margin-top: -75px};
+}
+body {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}

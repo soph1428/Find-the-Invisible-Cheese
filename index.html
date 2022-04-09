@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="findtheinvisiblecheese.css">
+    <link rel="icon" type="image/x-icon" href="mac and cheese.png">
+    <title>Find The Invisible Cheese</title>
+</head>
+<body background="background.jpg">
+    <img id="cheese" width="150" height="150" src="mac and cheese.png">
+    <label id="cheesesfound">Cheeses Found: 0</label>
+    <label id="fastesttime">Fastest Time: 0:00</label>
+    <label id="stopwatch">Stopwatch: 0:00</label>
+    <label id="globalcheesesfound">Global Cheeses Found: 0</label>
+    <label id="globalfastesttime">Global Fastest Time: 0:00</label>
+    <button id="startButton">Start</button>
+    <script src="/node_modules/socket.io/client-dist/socket.io.js"></script>
+    <script src="findtheinvisiblecheese.js"></script>
+</body>
+</html>
