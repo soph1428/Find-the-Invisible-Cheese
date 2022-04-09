@@ -13,6 +13,6 @@ io.on(`connection`, (socket) => {
         interval = setInterval(() => {io.emit(`Global`, data)}, 100)
     })
 })
-server.listen(process.env.PORT || 5500, "127.0.0.1", () => {
+server.listen(process.env.PORT || 5500, "0.0.0.0", () => {
     console.log('listening on 5500');
 })

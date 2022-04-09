@@ -1,5 +1,5 @@
 var cheese = document.getElementById("cheese"),
-socket = io.connect("http://127.0.0.1:5500");
+socket = io.connect("https://findtheinvisiblecheese.herokuapp.com");
 start = document.getElementById("startButton"),
 cheesesfound = document.getElementById("cheesesfound"), globalcheesesfound = document.getElementById(`globalcheesesfound`),
 fastesttime = document.getElementById("fastesttime"), globalfastesttime = document.getElementById(`globalfastesttime`),
