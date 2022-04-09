@@ -67,7 +67,7 @@ function startStopwatch() {
     }, 1000)
 }
 document.addEventListener("click", () => {
-    if (distance < cheese.width / 4 && xDifference != "" && start.style.display == "none") {
+    if (distance < cheese.width / 4 && xDifference != "" && start.style.display == "none" && cheese.style.display == ``) {
         cheese.style.display = "unset"
         cheese.style.animation = "cheeseAnimation 0.7s ease-out forwards"
         clearInterval(stopwatchInterval)
@@ -98,7 +98,7 @@ document.addEventListener("click", () => {
         setTimeout(() => {yum.play()}, 500)
         setTimeout(() => {
             start.style.display = "unset"
-            cheese.style.display = "none"
+            cheese.style.display = ""
             cheese.style.animation = ""
         }, 1500)
     }
