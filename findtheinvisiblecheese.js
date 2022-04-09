@@ -34,6 +34,7 @@ start.onclick = function() {
 }
 document.addEventListener("mousemove", move)
 document.addEventListener("touchmove", (e) => {move(e.targetTouches[0])})
+document.addEventListener("touchend", (e) => {cNote.volume = 0})
 function move(e) {
     document.documentElement.style.cursor = "unset"
     if (detectMousePos) {
