@@ -1,8 +1,7 @@
 var cheese = document.getElementById("cheese"),
-socket = io.connect("https://findtheinvisiblecheese.herokuapp.com");
 start = document.getElementById("startButton"),
-cheesesfound = document.getElementById("cheesesfound"), globalcheesesfound = document.getElementById(`globalcheesesfound`),
-fastesttime = document.getElementById("fastesttime"), globalfastesttime = document.getElementById(`globalfastesttime`),
+cheesesfound = document.getElementById("cheesesfound"),
+fastesttime = document.getElementById("fastesttime"),
 stopwatch = document.getElementById("stopwatch"), stopwatchInterval = "",
 cNote = document.createElement("audio"),
 yum = document.createElement("audio"),
@@ -13,12 +12,6 @@ if (localStorage.getItem("Cheeses Found")) {
 }
 if (localStorage.getItem("Fastest Time")) {
     fastesttime.textContent = `Fastest Time: ${localStorage.getItem("Fastest Time")}`
-} socket.on(`Global`, (data) => {globalcheesesfound.textContent = `Global Cheeses Found: ${data.cheeseText}`, localStorage.setItem(`Global Cheeses Found`, data.cheeseText), globalfastesttime.textContent = `Global Fastest Time: ${data.timeText}`, localStorage.setItem(`Global Fastest Time`, data.timeText), socket.emit(`Global`, {cheeseText: data.cheeseText, timeText: data.timeText})})
-if (localStorage.getItem(`Global Cheeses Found`)) {
-    globalcheesesfound.textContent = `Global Cheeses Found: ${localStorage.getItem("Global Cheeses Found")}`
-}
-if (localStorage.getItem(`Global Fastest Time`)) {
-    globalfastesttime.textContent = `Global Fastest Time: ${localStorage.getItem("Global Fastest Time")}`
 }
 function changeDistances(x, y) {
     xDifference = x, yDifference = y
@@ -76,24 +69,14 @@ document.addEventListener("click", () => {
             localStorage.setItem("Fastest Time", stopwatch.textContent.slice(11, stopwatch.textContent.length))
             fastesttime.textContent = `Fastest Time: ${localStorage.getItem("Fastest Time")}`
         }
-        if (globalfastesttime.textContent == `Global Fastest Time: 0:00`) {
-            globalfastesttime.textContent = `Global Fastest Time: ${stopwatch.textContent.slice(11, stopwatch.textContent.length)}`
-        }
         else if (stopwatch.textContent.slice(11, 12) < fastesttime.textContent.slice(14, 15) || stopwatch.textContent.slice(13, 14) < fastesttime.textContent.slice(16, 17) && stopwatch.textContent.slice(11, 12) == fastesttime.textContent.slice(14, 15) ||
             stopwatch.textContent.slice(11, 12) == fastesttime.textContent.slice(14, 15) && stopwatch.textContent.slice(13, 14) == fastesttime.textContent.slice(16, 17) && stopwatch.textContent.slice(stopwatch.textContent.length - 1, stopwatch.textContent.length) <
             fastesttime.textContent.slice(fastesttime.textContent.length - 1, fastesttime.textContent.length)) {
             localStorage.setItem("Fastest Time", stopwatch.textContent.slice(11, stopwatch.textContent.length))
             fastesttime.textContent = `Fastest Time: ${localStorage.getItem("Fastest Time")}`
-            if (stopwatch.textContent.slice(11, 12) < globalfastesttime.textContent.slice(21, 22) || stopwatch.textContent.slice(13, 14) < globalfastesttime.textContent.slice(23, 24) && stopwatch.textContent.slice(11, 12) == globalfastesttime.textContent.slice(21, 22) ||
-            stopwatch.textContent.slice(11, 12) == globalfastesttime.textContent.slice(21, 22) && stopwatch.textContent.slice(13, 14) == globalfastesttime.textContent.slice(23, 24) && stopwatch.textContent.slice(stopwatch.textContent.length - 1, stopwatch.textContent.length) <
-            globalfastesttime.textContent.slice(globalfastesttime.textContent.length - 1, globalfastesttime.textContent.length)) {
-                globalfastesttime.textContent = `Global Fastest Time: ${stopwatch.textContent.slice(11, stopwatch.textContent.length)}`
-            }
         }
         stopwatch.textContent = "Stopwatch: 0:00"
         cheesesfound.textContent = `Cheeses Found: ${Number(cheesesfound.textContent.slice(cheesesfound.textContent.indexOf(":") + 2, cheesesfound.textContent.length)) + 1}`
-        socket.emit(`Global`, {cheeseText: Number(globalcheesesfound.textContent.slice(globalcheesesfound.textContent.indexOf(":") + 2, globalcheesesfound.textContent.length)) + 1, timeText: globalfastesttime.textContent.slice(21, globalfastesttime.textContent.length)})
-        socket.on(`Global`, (data) => {globalcheesesfound.textContent = `Global Cheeses Found: ${data.cheeseText}`, localStorage.setItem(`Global Cheeses Found`, data.cheeseText), globalfastesttime.textContent = `Global Fastest Time: ${data.timeText}`, localStorage.setItem(`Global Fastest Time`, data.timeText), socket.emit(`Global`, {cheeseText: data.cheeseText, timeText: data.timeText})})
         localStorage.setItem("Cheeses Found", Number(cheesesfound.textContent.slice(cheesesfound.textContent.indexOf(":") + 2, cheesesfound.textContent.length)))
         setTimeout(() => {yum.play()}, 500)
         setTimeout(() => {

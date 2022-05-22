@@ -14,7 +14,7 @@
     height: 140px;
     font-size: 100px;
 }
-#cheesesfound, #globalcheesesfound, #fastesttime, #stopwatch, #globalfastesttime {
+#cheesesfound, #fastesttime, #stopwatch {
     color: green;
     background-color: white;
     font-size: 50px;
